@@ -2,7 +2,6 @@
   border: solid 1px #dedede;
   font-size: 19px;
   font-family: "Segoe UI Symbol";
-  color: rgb(91, 91, 91);
   line-height: 1.368;
 
 
@@ -14,9 +13,10 @@
   }
 
   .nav__item {
-    min-width: 120px;
+    min-width: 130px;
     text-align: center;
     padding: 10px;
+    color: rgb(91, 91, 91);
 
     &:hover {
       cursor: pointer;
@@ -24,4 +24,17 @@
       color: white;
     }
   }
+
+  .active {
+    background-color: #91d573;
+
+    .nav__item {
+      color: white;
+      width: 50px;
+      min-width: 130px;
+      text-align: center;
+      padding: 10px;
+    }
+  }
+
 }

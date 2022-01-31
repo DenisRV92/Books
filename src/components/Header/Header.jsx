@@ -1,9 +1,9 @@
 import React from 'react';
 import style from './Header.module.scss'
+import * as axios from "axios";
 
 const Header = () => {
-
-    return (
+        return (
         <div className={style.header}>
             <span>BOOKS</span>
         </div>
