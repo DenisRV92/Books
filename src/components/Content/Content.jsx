@@ -5,10 +5,12 @@ import {ContextApp} from "../Search/Search";
 // import {ContextApp} from "../Nav/Nav";
 
 
-const Content = () => {
-    const [content,dispatch,quest] = useContext(ContextApp);
+const Content = (props) => {
+    const [content, dispatch, quest,setQuest,search] = useContext(ContextApp);
 // useEffect(()=>console.log(content),[content.length])
-
+//     const pagination = Array.from(Array(198).keys())
+//     const pagination=[1,2,3,4,5,6,7,8,9,10];
+//     console.log(props.bookSearch)
     if (!content) {
         return null
     } else {
@@ -24,7 +26,15 @@ const Content = () => {
             <div className={style.content}>
                 <div className={style.container}>
                     {/*// <stateContext.Provider>*/}
-                    <Books content={content} quest={quest}/>
+                    <div className={style.paginations}>
+                        {/*{pagination.map((page, index) => <span key={index} className={style.pagination}>{page}</span>)}*/}
+                    </div>
+                    <Books content={content}
+                           quest={quest}
+                           search={search}
+                           // currentPage={currentPage}
+                           // setCurrentPage={setCurrentPage}
+                           bookFetch={props.bookFetch}/>
 
                     {/*'ssssssssssssssssssss'*/}
                     {/*// </stateContext.Provider>*/}
