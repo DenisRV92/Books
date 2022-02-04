@@ -1,4 +1,4 @@
-import React, {useReducer, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useMemo, useReducer, useState} from 'react';
 import style from './Search.module.scss'
 import logoBook from '../../img/book.png'
 import logoSearch from '../../img/search.png'
@@ -10,7 +10,8 @@ export const ContextApp = React.createContext();
 const initialState = {
     // categories: ['art', 'biography', 'computers', 'history', 'medical', 'poetry'],
     // booksSearch: [],
-    books: []
+    books: [],
+    currentPage:1,
 
 };
 
@@ -18,45 +19,12 @@ const initialState = {
 export function reducers(state, action) {
 
     switch (action.type) {
-        case 'booksSearch':
-        // debugger
-        // if(!state.books.includes(action.id)){
-        //     // debugger
+        // case 'CURRENT_PAGE':
         //     return {
         //         ...state,
-        //         books: [...state.books, {
-        //             category: action.type,
-        //             id: action.id,
-        //             title: action.title,
-        //             img: action.img,
-        //             authors: action.authors,
-        //             description: action.description
-        //         }]
-        //     }
-        // }
-        // else if(state.books.includes(action.id)) {
-        //     debugger
-        //     return state.books.filter(v=>v!==action.id)
-        // }
-        // return {
-        // ...state,
-        // books: [...state.books.map(v => {
-        // debugger
-        // if (v.category===undefined) {
-        //     // debugger
-        //     return {
-        //         category: action.type,
-        //         id: action.id,
-        //         title: action.title,
-        //         img: action.img,
-        //         authors: action.authors,
-        //         description: action.description
-        //     }
-        // }
-
-
-        // })]
-
+        //         currentPage: action.page
+        //     };
+        case 'booksSearch':
         case 'art':
         case 'biography':
         case 'computers':
@@ -78,7 +46,7 @@ export function reducers(state, action) {
                         previewLink: action.previewLink,
                         infoLink: action.infoLink,
                     }],
-                    totalItems:action.totalItems
+                    totalItems: action.totalItems
                 }
             } else {
                 debugger
@@ -103,12 +71,17 @@ const Search = () => {
     const [state, dispatch] = useReducer(reducers, initialState)
     const [quest, setQuest] = useState(false);
     // const [currentPage, setCurrentPage] = useState(1);
-    const search = (e,currentPage=1) => {
-        console.log(currentPage)
+    // useLayoutEffect(()=>setCurrentPage(currentPage),[currentPage])
+
+    // const memoizedValue = useMemo(() => currentPage, [currentPage]);
+    console.log();
+    const search = (e,page=1) => {
+        console.log(page);
         setQuest(true);
         state.books.splice(0);
+        const inauthor='inauthor:';
         let book = document.querySelector('input').value
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${book}&startIndex=${currentPage*10}&maxResults=20&key=AIzaSyDqGOZbu-wLQnXYT4Oa-gIcv8n5sqZCmDk`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${book}&startIndex=${page*10}&maxResults=10&key=AIzaSyDqGOZbu-wLQnXYT4Oa-gIcv8n5sqZCmDk`)
             .then(res => res.data.items.map(v => dispatch({
                 type: 'booksSearch',
                 id: v.id,
@@ -118,13 +91,13 @@ const Search = () => {
                 description: v.volumeInfo.description,
                 previewLink: v.volumeInfo.previewLink,
                 infoLink: v.volumeInfo.infoLink,
-                totalItems:res.data.totalItems,
+                totalItems: res.data.totalItems,
 
             })))
     }
     // console.log(Array.from(Array(199).keys()))
     return (
-        <ContextApp.Provider value={[state, dispatch, quest, setQuest,search]}>
+        <ContextApp.Provider value={[state, dispatch, quest, setQuest, search]}>
             <div className={style.search}>
                 <div className={style.container}>
                     <div className={style.search__img}>
