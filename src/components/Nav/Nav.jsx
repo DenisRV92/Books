@@ -6,6 +6,9 @@ import Content from "../Content/Content";
 import {ContextApp} from "../Search/Search";
 
 const categories = ['art', 'biography', 'computers', 'history', 'medical', 'poetry'];
+
+// '&key=AIzaSyDqGOZbu-wLQnXYT4Oa-gIcv8n5sqZCmDk';
+
 // const [content, dispatch, quest,setQuest,search] = useContext(ContextApp);
 // function bookFetch(e,currentButton) {
 //     //     // console.log(state)
@@ -25,12 +28,12 @@ const categories = ['art', 'biography', 'computers', 'history', 'medical', 'poet
 //             })))
 //     }
 const NavBars = (props) => {
-// console.log(props)
+// const [state, dispatch, quest, setQuest, search, currentPage, setCurrentPage]= useContext(ContextApp)
     return (
         <>
             <NavLink exact to='/'><Redirect/></NavLink>
             <NavLink to={props.v} activeClassName={style.active}>
-                <ul onClick={props.bookFetch}>
+                <ul onClick={(e)=>{props.bookFetch(e);props.setCurrentPage(1)}}>
                     <li className={style.nav__item}>
                         {props.v}
                     </li>
@@ -44,12 +47,22 @@ const NavBars = (props) => {
 
 
 const Nav = (props) => {
-    function bookFetch(e,currentButton) {
-        // debugger
+    function bookFetch(e, currentButton = 1, urlName) {
+        // setCurrentPage(1);
+        let url = '';
+        // state.books.splice(0);
+        if (urlName) {
+            url = urlName;
+            // console.log(url)
+        }
+        else {
+            url = e.target.innerHTML;
+        }
         setQuest(false)
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=subject:${e.target.innerHTML}&startIndex=0&maxResults=20&key=AIzaSyDqGOZbu-wLQnXYT4Oa-gIcv8n5sqZCmDk`)
+        state.books.splice(0);
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=subject:${url}&startIndex=${currentButton * 12}&maxResults=12`)
             .then(res => res.data.items.map(v => dispatch({
-                type: e.target.innerHTML,
+                type: url,
                 id: v.id,
                 title: v.volumeInfo.title,
                 img: v.volumeInfo.imageLinks,
@@ -57,16 +70,19 @@ const Nav = (props) => {
                 description: v.volumeInfo.description,
                 previewLink: v.volumeInfo.previewLink,
                 infoLink: v.volumeInfo.infoLink,
-                totalItems:res.data.totalItems,
+                totalItems: res.data.totalItems,
 
             })))
     }
-    const [state, dispatch, quest, setQuest] = useContext(ContextApp);
-    let NavBar = categories.map(v => <NavBars key={v} v={v} state={state}
-                                              dispatch={dispatch}
-                                              quest={quest}
-                                              bookFetch={bookFetch}
-                                              setQuest={setQuest}/>)
+
+    const [state, dispatch, quest, setQuest,search,currentPage, setCurrentPage] = useContext(ContextApp);
+    let NavBar = categories.map(v => <NavBars key={v}
+                                              v={v}
+                                              // state={state}
+                                              // dispatch={dispatch}
+                                              // quest={quest}
+                                              setCurrentPage={setCurrentPage}
+                                              bookFetch={bookFetch}/>)
 
     return (
         // <ContextApp.Provider value={[state, props.booksSearch]}

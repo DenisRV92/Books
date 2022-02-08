@@ -7,12 +7,12 @@ export function createPages(pagination, pagesCount, currentPage) {
             for (let i = currentPage - 4; i <= currentPage + 5; i++) {
                 pagination.push(i)
                 // debugger
-                if (i == pagesCount) break
+                if (i === pagesCount) break
             }
         } else {
             for (let i = 1; i <= 10; i++) {
                 pagination.push(i)
-                if (i == pagesCount) break
+                if (i === pagesCount) break
             }
         }
     } else {
