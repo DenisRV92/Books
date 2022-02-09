@@ -3,6 +3,7 @@ import BooksItems from "./BooksItems/BooksItems";
 import style from "./Books.module.scss";
 import {createPages} from "../../utils/pagesCreator";
 import {ContextApp} from "../../Reducer/Reducer";
+// import ClipLoader from "react-spinners/ClipLoader";
 // import {ContextApp} from "../../Search/Search";
 
 
@@ -54,11 +55,13 @@ const Books = (props) => {
 
     const numberPage = (event) => {
         let page = +event.currentTarget.innerText
-        setCurrentPage(prev => prev < page ? page : prev - (prev - page));
-        if (!quest) {
-            props.bookFetch(event, page, urlName)
-        } else {
-            search(event, page)
+        if(page!==currentPage) {
+            setCurrentPage(prev => prev < page ? page : prev - (prev - page));
+            if (!quest) {
+                props.bookFetch(event, page, urlName)
+            } else {
+                search(event, page)
+            }
         }
     }
 
@@ -66,6 +69,7 @@ const Books = (props) => {
     const urlName = window.location.pathname.replace('/', '');
     return (
         <div className={style.books}>
+            {/*<ClipLoader loading={content.loading}  size={150} />*/}
             {content.books.length === 0 || <div className={style.pagination_container}>
                 <button disabled={currentPage === 1} className={currentPage === 1 ? style.disabled : null}
                         onClick={(e) => {

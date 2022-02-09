@@ -4,6 +4,7 @@ export const ContextApp = React.createContext();
 
 export const initialState = {
     books: [],
+    loading: false,
 };
 
 // &key=AIzaSyDqGOZbu-wLQnXYT4Oa-gIcv8n5sqZCmDk
@@ -11,6 +12,11 @@ export const initialState = {
 export function reducers(state, action) {
 
     switch (action.type) {
+        case 'loading':
+            return {
+                ...state,
+                loading: action.loading
+            }
         case 'booksSearch':
         case 'art':
         case 'biography':

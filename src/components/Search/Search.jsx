@@ -6,54 +6,7 @@ import * as axios from "axios";
 import Nav from "../Nav/Nav";
 
 import {Link} from "react-router-dom";
-import {ContextApp,initialState, reducers} from "../Reducer/Reducer";
-
-// export const ContextApp = React.createContext();
-
-// const initialState = {
-//     books: [],
-// };
-
-// &key=AIzaSyDqGOZbu-wLQnXYT4Oa-gIcv8n5sqZCmDk
-
-// export function reducers(state, action) {
-//
-//     switch (action.type) {
-//         case 'booksSearch':
-//         case 'art':
-//         case 'biography':
-//         case 'computers':
-//         case 'history':
-//         case 'medical':
-//         case 'poetry':
-//             if (!state.books.map(v => v.id).includes(action.id)) {
-//                 return {
-//                     ...state,
-//                     books: [...state.books, {
-//                         category: action.type,
-//                         id: action.id,
-//                         title: action.title,
-//                         img: action.img,
-//                         authors: action.authors,
-//                         description: action.description,
-//                         previewLink: action.previewLink,
-//                         infoLink: action.infoLink,
-//                     }],
-//                     totalItems: action.totalItems
-//                 }
-//             } else {
-//                 // debugger
-//                 return {
-//                     ...state,
-//                     books: [...state.books]
-//                 }
-//             }
-//         default:
-//             return state;
-//     }
-//
-// }
-
+import {ContextApp, initialState, reducers} from "../Reducer/Reducer";
 
 const Search = () => {
 
@@ -83,6 +36,10 @@ const Search = () => {
                 totalItems: res.data.totalItems,
 
             })))
+            .then(dispatch({
+                type: 'loading',
+                loading: true,
+            }))
             .catch(err => setError(true))
 
     }
@@ -103,16 +60,16 @@ const Search = () => {
                             <input type="text"/>
                         </div>
                         <Link to="/">
-                        <div className={style.input__button} onClick={() => {
-                            search();
-                            setCurrentPage(1)
-                        }}>
-                            <img src={logoSearch} alt=""/>
-                            {/*<Link to="/">*/}
-                            <button>Search
-                            </button>
-                            {/*</Link>*/}
-                        </div>
+                            <div className={style.input__button} onClick={() => {
+                                search();
+                                setCurrentPage(1)
+                            }}>
+                                <img src={logoSearch} alt=""/>
+                                {/*<Link to="/">*/}
+                                <button>Search
+                                </button>
+                                {/*</Link>*/}
+                            </div>
                         </Link>
                     </div>
                 </div>

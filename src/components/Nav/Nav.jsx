@@ -54,6 +54,10 @@ const Nav = (props) => {
                 totalItems: res.data.totalItems,
 
             })))
+            .then(dispatch({
+                type:'loading',
+                loading:true,
+            }))
     }
 
     const [state, dispatch, quest, setQuest, search, currentPage, setCurrentPage] = useContext(ContextApp);
