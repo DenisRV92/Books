@@ -6,7 +6,7 @@ import Content from "../Content/Content";
 import {ContextApp} from "../Reducer/Reducer";
 import NavMobile from "./NavMobile/NavModile";
 import MenuLogo from '../../img/Hamburger.png'
-// import {ContextApp} from "../Search/Search";
+
 
 const categories = ['art', 'biography', 'computers', 'history', 'medical', 'poetry'];
 
@@ -37,13 +37,10 @@ const Nav = (props) => {
     function bookFetch(e, currentButton = 1, urlName) {
         let url = '';
         if (urlName) {
-            // console.log(urlName,currentButton)
             url = urlName;
         } else {
             url = e.target.innerText;
-            // console.log(e)
         }
-        // console.log(url,currentButton)
         setQuest(false)
         state.books.splice(0);
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=subject:${url}&startIndex=${currentButton * 12}&maxResults=12`)
@@ -78,7 +75,7 @@ const Nav = (props) => {
     // console.log(menuBurger)
     return (
         <>
-            <div className={style.nav} onMouseLeave={()=>setMenuBurger(false)}>
+            <div className={style.nav} onMouseLeave={() => setMenuBurger(false)}>
                 <img src={MenuLogo} onClick={() => {
                     menuBurger ? setMenuBurger(false) : setMenuBurger(true)
                 }} alt=""/>
