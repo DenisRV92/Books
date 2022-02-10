@@ -9,11 +9,11 @@ import MenuLogo from '../../img/Hamburger.png'
 
 
 const categories = ['art', 'biography', 'computers', 'history', 'medical', 'poetry'];
-
-// '&key=AIzaSyDqGOZbu-wLQnXYT4Oa-gIcv8n5sqZCmDk';
+const key = '&key=AIzaSyDqGOZbu-wLQnXYT4Oa-gIcv8n5sqZCmDk';
 
 
 const NavBars = (props) => {
+    // debugger
     return (
         <>
             <NavLink exact to='/'><Redirect exact to='/'/></NavLink>
@@ -43,7 +43,7 @@ const Nav = (props) => {
         }
         setQuest(false)
         state.books.splice(0);
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=subject:${url}&startIndex=${currentButton * 12}&maxResults=12`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=subject:${url}&startIndex=${currentButton * 12}${key}&maxResults=12`)
             .then(res => res.data.items.map(v => dispatch({
                 type: url,
                 id: v.id,
@@ -72,7 +72,6 @@ const Nav = (props) => {
                                                       setCurrentPage={setCurrentPage}
                                                       bookFetch={bookFetch}/>)
     const [menuBurger, setMenuBurger] = useState(false);
-    // console.log(menuBurger)
     return (
         <>
             <div className={style.nav} onMouseLeave={() => setMenuBurger(false)}>

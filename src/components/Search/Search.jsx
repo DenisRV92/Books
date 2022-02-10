@@ -8,6 +8,7 @@ import Nav from "../Nav/Nav";
 import {Link} from "react-router-dom";
 import {ContextApp, initialState, reducers} from "../Reducer/Reducer";
 
+const key = '&key=AIzaSyDqGOZbu-wLQnXYT4Oa-gIcv8n5sqZCmDk';
 const Search = () => {
 
     const [state, dispatch] = useReducer(reducers, initialState)
@@ -23,7 +24,7 @@ const Search = () => {
 
         let book = document.querySelector('input').value
         console.log(book)
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${book}&startIndex=${page >= 1 ? (page - 1) * 10 : 0}&maxResults=12`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${book}&startIndex=${page >= 1 ? (page - 1) * 10 : 0}${key}&maxResults=12`)
             .then(res => res.data.items.map(v => dispatch({
                 type: 'booksSearch',
                 id: v.id,
@@ -65,10 +66,8 @@ const Search = () => {
                                 setCurrentPage(1)
                             }}>
                                 <img src={logoSearch} alt=""/>
-                                {/*<Link to="/">*/}
                                 <button>Search
                                 </button>
-                                {/*</Link>*/}
                             </div>
                         </Link>
                     </div>

@@ -13,9 +13,8 @@ const Content = (props) => {
             display: block;
             margin: 10vw auto;
  `;
-
     useEffect(() => {
-        if (content.books.length === 12) {
+        if (content.books.length === 12 || content.books.length === content.totalItems) {
             dispatch({
                 type: 'loading',
                 loading: false,

@@ -9,7 +9,7 @@ import {ContextApp} from "../../Reducer/Reducer";
 
 const Books = (props) => {
     const [content, dispatch, quest, setQuest, search, currentPage, setCurrentPage, error, setError] = useContext(ContextApp)
-
+// console.log(content,quest)
     if (error) {
         return (
             <div className={style.books}>
@@ -19,7 +19,9 @@ const Books = (props) => {
     }
 
     if (!quest) {
-        var booksItem = content.books.map(v => v.category === window.location.pathname.replace('/', '')
+        // let regexp = /\d/g;
+        //  console.log(window.location.href.match(/\w+$/ig).join())
+        var booksItem = content.books.map(v => v.category === window.location.href.match(/\w+$/ig).join()
             ? <BooksItems key={v.id}
                           loading={content.loading}
                           title={v.title}
@@ -57,7 +59,7 @@ const Books = (props) => {
 
     const numberPage = (event) => {
         let page = +event.currentTarget.innerText
-        if(page!==currentPage) {
+        if (page !== currentPage) {
             setCurrentPage(prev => prev < page ? page : prev - (prev - page));
             if (!quest) {
                 props.bookFetch(event, page, urlName)
@@ -68,7 +70,9 @@ const Books = (props) => {
     }
 
     createPages(pagination, pagesCount, currentPage);
-    const urlName = window.location.pathname.replace('/', '');
+    if (window.location.href.match(/\w+$/ig)) {
+        var urlName = window.location.href.match(/\w+$/ig).join();
+    }
     return (
         <div className={style.books}>
             {/*<ClipLoader loading={content.loading}  size={150} />*/}

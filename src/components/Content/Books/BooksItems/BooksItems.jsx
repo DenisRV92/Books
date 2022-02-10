@@ -5,6 +5,7 @@ import logo from '../../../../img/bookImg.png';
 
 const BooksItems = (props) => {
     const [modalActive, setModalActive] = useState(false);
+    // console.log(props)
     return (
         <div className={style.page}>
             <div className={style.container}>
