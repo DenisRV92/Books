@@ -4,12 +4,31 @@
   font-family: "Segoe UI Symbol";
   line-height: 1.368;
 
+  img {
+    width: 50px;
+    height: 50px;
+    //display: block;
+  }
+
+  @media (min-width: 768px) {
+    img {
+      display: none;
+    }
+  }
 
   .container {
+    //display: none;
     max-width: 980px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      display: none;
+    }
   }
 
   .nav__item {
@@ -39,23 +58,8 @@
 
 }
 
-//.paginations {
-//  margin: 20px 0;
-//  width: 100%;
-//  text-align: center;
-//  .pagination {
-//    border: 1px solid lightgray;
-//    border-radius: 100%;
-//    display: inline-block;
-//    padding: 5px 10px;
-//    margin: 0 10px;
-//    //width: 40px;
-//    //height: 40px;
-//    text-align: center;
-//    //width: 50px;
-//    //span{
-//    //  width: 50px;
-//    //  display: block;
-//    //}
+//@media (max-width: 768px) {
+//  .container {
+//    display: none;
 //  }
 //}

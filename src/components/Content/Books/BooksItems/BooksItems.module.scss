@@ -1,36 +1,50 @@
 .page {
   flex: 1 0 25%;
   flex-direction: column;
-//text-align: center;
+
   .container {
     width: 180px;
     height: 330px;
     margin: 20px auto;
     border: solid 1px #ddd;
-    //object-fit: cover;
-    .page__img{
+
+    .page__img {
       width: 100%;
       height: 200px;
-      object-fit:cover;
-      //background-size: cover;
-      img{
+      object-fit: cover;
+
+      img {
         width: 100%;
         height: 100%;
       }
     }
-    .page__title{
+
+    .page__title {
       padding: 10px 7px;
       height: 70px;
     }
-    button{
+
+    button {
       width: 75px;
       font-size: 15px;
       padding: 10px 5px;
-      //margin-left: 7px;
       border-radius: 5px;
       background-color: #91d573;
       color: white;
-      margin:10px 0 10px 7px;
+      margin: 10px 0 10px 7px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .container {
+      height: 310px;
+
+      .page__title {
+        height: 50px;
+        overflow: hidden;
+        white-space: nowrap;;
+        text-overflow: ellipsis;
+      }
     }
   }
 }

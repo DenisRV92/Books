@@ -1,9 +1,11 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import style from './Nav.module.scss'
 import {NavLink, Redirect} from "react-router-dom";
 import * as axios from "axios";
 import Content from "../Content/Content";
 import {ContextApp} from "../Reducer/Reducer";
+import NavMobile from "./NavMobile/NavModile";
+import MenuLogo from '../../img/Hamburger.png'
 // import {ContextApp} from "../Search/Search";
 
 const categories = ['art', 'biography', 'computers', 'history', 'medical', 'poetry'];
@@ -35,10 +37,13 @@ const Nav = (props) => {
     function bookFetch(e, currentButton = 1, urlName) {
         let url = '';
         if (urlName) {
+            // console.log(urlName,currentButton)
             url = urlName;
         } else {
-            url = e.target.innerHTML;
+            url = e.target.innerText;
+            // console.log(e)
         }
+        // console.log(url,currentButton)
         setQuest(false)
         state.books.splice(0);
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=subject:${url}&startIndex=${currentButton * 12}&maxResults=12`)
@@ -55,8 +60,8 @@ const Nav = (props) => {
 
             })))
             .then(dispatch({
-                type:'loading',
-                loading:true,
+                type: 'loading',
+                loading: true,
             }))
     }
 
@@ -65,10 +70,21 @@ const Nav = (props) => {
                                               v={v}
                                               setCurrentPage={setCurrentPage}
                                               bookFetch={bookFetch}/>)
-
+    let NavBarMobile = categories.map(v => <NavMobile key={v}
+                                                      v={v}
+                                                      setCurrentPage={setCurrentPage}
+                                                      bookFetch={bookFetch}/>)
+    const [menuBurger, setMenuBurger] = useState(false);
+    // console.log(menuBurger)
     return (
         <>
-            <div className={style.nav}>
+            <div className={style.nav} onMouseLeave={()=>setMenuBurger(false)}>
+                <img src={MenuLogo} onClick={() => {
+                    menuBurger ? setMenuBurger(false) : setMenuBurger(true)
+                }} alt=""/>
+                {menuBurger
+                    ? NavBarMobile
+                    : null}
                 <div className={style.container}>
                     {NavBar}
                 </div>

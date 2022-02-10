@@ -55,12 +55,44 @@
 
       button {
         background-color: #79b260;
-        //color: white;
         font-size: 20px;
         font-family: "SegoeWPN";
         color: rgb(255, 255, 255);
         line-height: 1.13;
         padding: 5px;
+      }
+    }
+
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      width: 100%;
+
+      .search__img {
+        display: none;
+      }
+
+      .search__input {
+        margin: 0 auto;
+      }
+    }
+  }
+  @media (max-width: 500px) {
+    .container {
+      width: 100%;
+
+      .search__input {
+        margin: 0 auto;
+        width: 330px;
+
+        input {
+          width: 290px;
+        }
+
+        button {
+          display: none;
+        }
       }
     }
   }

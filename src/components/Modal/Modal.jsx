@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import style from './Modal.module.scss'
 import logo from "../../img/bookImg.png";
-
+import close from '../../img/close.jpg'
 
 const Modal = ({active, setActive, title, img, authors, description, previewLink, infoLink}) => {
     if (active) {
         return (
             <div className={style.modal} onClick={() => setActive(false)}>
                 <div className={style.modal__content} onClick={e => e.stopPropagation()}>
+                    <img className={style.close} src={close} onClick={() => setActive(false)} alt=""/>
                     <div className={style.content__title}>
                         <div className={style.title__img}>
                             {img

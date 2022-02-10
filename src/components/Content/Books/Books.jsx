@@ -21,6 +21,7 @@ const Books = (props) => {
     if (!quest) {
         var booksItem = content.books.map(v => v.category === window.location.pathname.replace('/', '')
             ? <BooksItems key={v.id}
+                          loading={content.loading}
                           title={v.title}
                           img={v.img}
                           authors={v.authors}
@@ -31,6 +32,7 @@ const Books = (props) => {
     } else {
         var booksItem = content.books.map(v => v.category === 'booksSearch'
             ? <BooksItems key={v.id}
+                          loading={content.loading}
                           title={v.title}
                           img={v.img}
                           authors={v.authors}

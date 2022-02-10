@@ -1,0 +1,28 @@
+.mobile__nav{
+  border-top: 1px #dedede solid;
+}
+.mobile__item {
+  min-width: 130px;
+  text-align: center;
+  padding: 10px;
+  color: rgb(91, 91, 91);
+
+  &:hover {
+    cursor: pointer;
+    background-color: #dddddd;
+    //color: white;
+  }
+}
+
+.active {
+  background-color: #91d573;
+
+  .mobile__item {
+    background-color: #91d573;
+    color: white;
+    width: 100%;
+    //min-width: 130px;
+    text-align: center;
+    padding: 10px;
+  }
+}
