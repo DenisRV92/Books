@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Books/static/css/main.8f9d4d8c.chunk.css",
+    "main.css": "/Books/static/css/main.d146bfd3.chunk.css",
     "main.js": "/Books/static/js/main.218ab280.chunk.js",
     "main.js.map": "/Books/static/js/main.218ab280.chunk.js.map",
     "runtime-main.js": "/Books/static/js/runtime-main.2778ed45.js",
@@ -10,7 +10,7 @@
     "static/js/3.0a0e7bc2.chunk.js": "/Books/static/js/3.0a0e7bc2.chunk.js",
     "static/js/3.0a0e7bc2.chunk.js.map": "/Books/static/js/3.0a0e7bc2.chunk.js.map",
     "index.html": "/Books/index.html",
-    "static/css/main.8f9d4d8c.chunk.css.map": "/Books/static/css/main.8f9d4d8c.chunk.css.map",
+    "static/css/main.d146bfd3.chunk.css.map": "/Books/static/css/main.d146bfd3.chunk.css.map",
     "static/js/2.9f1c3b43.chunk.js.LICENSE.txt": "/Books/static/js/2.9f1c3b43.chunk.js.LICENSE.txt",
     "static/media/Hamburger.a633845b.png": "/Books/static/media/Hamburger.a633845b.png",
     "static/media/book.9216016f.png": "/Books/static/media/book.9216016f.png",
@@ -19,7 +19,7 @@
   "entrypoints": [
     "static/js/runtime-main.2778ed45.js",
     "static/js/2.9f1c3b43.chunk.js",
-    "static/css/main.8f9d4d8c.chunk.css",
+    "static/css/main.d146bfd3.chunk.css",
     "static/js/main.218ab280.chunk.js"
   ]
 }
